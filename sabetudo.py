@@ -33,7 +33,9 @@ Ou seja, em qualquer chat digite na caixa de mensagens:
 e clique na opção de enviar uma resposta.
 '''
 
-respostas = ['Sim.', 'Não.', 'Talvez.']
+simnao = ['Sim.', 'Não.', 'Talvez.']
+tempor = ['Daqui a pouco.', 'Foi ontem.', 'Daqui um mês.', 'Em Fevereiro.', 'Ano que vem.']
+valorr = ['10 x R$ 129,30.', 'R$ 10 no boleto.', 'R$ 1999,99.', 'Amanhã vai estar de graça.', 'US$ 18,99.']
 
 @bot.message_handler(func=lambda m: True)
 def send_welcome(message):
@@ -52,9 +54,13 @@ def query_text(inline_query):
         log_msg = str(inline_query.from_user.id) 
     logger_info.info(str(datetime.datetime.now()) + '\tInline\t' + log_msg)
     try:
-        r = types.InlineQueryResultArticle('1', 'Enviar resposta...', 
-            types.InputTextMessageContent(random.choice(respostas)))
-        bot.answer_inline_query(inline_query.id, [r])
+        s = types.InlineQueryResultArticle('1', 'Sim, Não ou Talvez.',
+            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(simnao)))
+        d = types.InlineQueryResultArticle('2', 'Datas.',
+            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(tempor)))
+        v = types.InlineQueryResultArticle('3', 'Valores.',
+            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(valorr)))
+        bot.answer_inline_query(inline_query.id, [s,d,v])
     except Exception as e:
         print(e)
 
