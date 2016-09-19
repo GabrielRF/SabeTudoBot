@@ -41,7 +41,7 @@ def send_welcome(message):
         log_msg = str(message.from_user.id) + ' ' + str(message.from_user.username)
     except:
         log_msg = str(message.from_user.id)
-    logger_info.info(str(datetime.datetime.now()) + '\t' + log_msg)
+    logger_info.info(str(datetime.datetime.now()) + '\tMessage\t' + log_msg)
     bot.reply_to(message, Start_msg, parse_mode='HTML')
 
 @bot.inline_handler(func=lambda m: True)
@@ -50,7 +50,7 @@ def query_text(inline_query):
         log_msg = str(inline_query.from_user.id) + ' ' + str(inline_query.from_user.username)
     except:
         log_msg = str(inline_query.from_user.id) 
-    logger_info.info(str(datetime.datetime.now()) + '\t' + log_msg)
+    logger_info.info(str(datetime.datetime.now()) + '\tInline\t' + log_msg)
     try:
         r = types.InlineQueryResultArticle('1', 'Enviar resposta...', 
             types.InputTextMessageContent(random.choice(respostas)))
