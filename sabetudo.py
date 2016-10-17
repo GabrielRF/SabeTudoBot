@@ -61,7 +61,7 @@ def query_text(inline_query):
             types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(tempo)))
         v = types.InlineQueryResultArticle('3', 'Valores.',
             types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(valor)))
-        c = types.InlineQueryResultArticle('3', 'Culpados.',
+        c = types.InlineQueryResultArticle('4', 'Culpados.',
             types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(culpa)))
         bot.answer_inline_query(inline_query.id, [s,d,v,c], cache_time=1, is_personal=True)
     except Exception as e:
