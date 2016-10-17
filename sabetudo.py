@@ -33,9 +33,9 @@ Ou seja, em qualquer chat digite na caixa de mensagens:
 e clique na opção de enviar uma resposta.
 '''
 
-simnao = ['Sim.', 'Não.', 'Talvez.']
-tempor = ['Daqui a pouco.', 'Foi ontem.', 'Daqui um mês.', 'Em Fevereiro.', 'Ano que vem.']
-valorr = ['10 x R$ 129,30.', 'R$ 10 no boleto.', 'R$ 1999,99.', 'Amanhã vai estar de graça.', 'US$ 18,99.']
+simnao = open('/usr/local/bin/SabeTudoBot/alt/simnao.txt').read().splitlines()
+tempo = open('/usr/local/bin/SabeTudoBot/alt/tempo.txt').read().splitlines()
+valor = open('/usr/local/bin/SabeTudoBot/alt/valor.txt').read().splitlines()
 
 @bot.message_handler(func=lambda m: True)
 def send_welcome(message):
@@ -57,9 +57,9 @@ def query_text(inline_query):
         s = types.InlineQueryResultArticle('1', 'Sim, Não ou Talvez.',
             types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(simnao)))
         d = types.InlineQueryResultArticle('2', 'Datas.',
-            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(tempor)))
+            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(tempo)))
         v = types.InlineQueryResultArticle('3', 'Valores.',
-            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(valorr)))
+            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(valor)))
         bot.answer_inline_query(inline_query.id, [s,d,v], cache_time=1, is_personal=True)
     except Exception as e:
         print(e)
