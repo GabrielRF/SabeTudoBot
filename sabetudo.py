@@ -36,6 +36,7 @@ e clique na opção de enviar uma resposta.
 simnao = open('/usr/local/bin/SabeTudoBot/alt/simnao.txt').read().splitlines()
 tempo = open('/usr/local/bin/SabeTudoBot/alt/tempo.txt').read().splitlines()
 valor = open('/usr/local/bin/SabeTudoBot/alt/valor.txt').read().splitlines()
+culpa = open('/usr/local/bin/SabeTudoBot/alt/culpa.txt').read().splitlines()
 
 @bot.message_handler(func=lambda m: True)
 def send_welcome(message):
@@ -60,6 +61,8 @@ def query_text(inline_query):
             types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(tempo)))
         v = types.InlineQueryResultArticle('3', 'Valores.',
             types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(valor)))
+        c = types.InlineQueryResultArticle('3', 'Culpados.',
+            types.InputTextMessageContent(str(u'\U0001F52E') + ' ' +random.choice(culpa)))
         bot.answer_inline_query(inline_query.id, [s,d,v], cache_time=1, is_personal=True)
     except Exception as e:
         print(e)
